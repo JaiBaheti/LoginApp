@@ -1,0 +1,30 @@
+<form (ngSubmit) = "validate()" #logfrm = ngForm>
+    <table class="table table-dark"> 
+        <tr>
+            <td>Username: </td>
+            <td><input type="text" name="username" #username=ngModel [(ngModel)]="auth.username"
+                 pattern="[a-zA-Z]{5,}" class="form-control">
+                <span *ngIf="username.dirty && username.invalid" class="alert alert-danger">
+                        Entered username is invalid.
+                </span>
+                </td>
+            
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="password" #password=ngModel name="password" [(ngModel)]="auth.password"
+                 pattern="[a-zA-Z0-9]{6,}" class="form-control">
+                <span *ngIf="password.dirty && password.invalid" class="alert alert-danger">
+                    Invalid Password.
+                </span>
+                </td>
+        </tr>
+        <tr><th colspan="2">
+            <button class="btn btn-success" type="submit" [disabled]=!logfrm.valid>login</button>
+        </th></tr>
+    </table>
+    <div [hidden]=!flag>
+        Username: {{ auth.username }}<br>
+        Password: {{ auth.password }}
+    </div>
+</form>
